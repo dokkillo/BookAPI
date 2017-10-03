@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
+using Newtonsoft.Json.Serialization;
+using System.Net.Http.Formatting;
+using System.Linq;
+
 
 [assembly: OwinStartup(typeof(BookAPI.Startup))]
 
@@ -20,6 +24,9 @@ namespace BookAPI
              );
 
             app.UseWebApi(config);
+
+            var jsonFormater = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
+            jsonFormater.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
 
     }
