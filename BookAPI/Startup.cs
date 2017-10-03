@@ -27,6 +27,14 @@ namespace BookAPI
 
             var jsonFormater = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormater.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<BookAPI.DAL.Entities.Author, BookAPI.Model.AuthorDto>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
+
+            });
+
         }
 
     }

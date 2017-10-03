@@ -1,4 +1,6 @@
-﻿using BookAPI.DAL;
+﻿using AutoMapper;
+using BookAPI.DAL;
+using BookAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,8 @@ namespace BookAPI.Controller
         public IHttpActionResult Get()
         {
             var db = DataBase.Instance;
-            return Ok(db.GetAuthors());
+            var authors = Mapper.Map<IEnumerable<AuthorDto>>(db.GetAuthors());
+            return Ok(authors);
         }
 
     }
