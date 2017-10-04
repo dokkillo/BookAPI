@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AuthorsController.cs" />
-    <Compile Include="Controller\ValuesController.cs" />
     <Compile Include="Model\AuthorDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
