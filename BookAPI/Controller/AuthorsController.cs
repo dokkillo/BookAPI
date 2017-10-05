@@ -13,11 +13,32 @@ namespace BookAPI.Controller
     public class AuthorsController : ApiController
     {
 
-        public IHttpActionResult Get()
+        Repository repo;
+
+        public AuthorsController()
         {
             var db = DataBase.Instance;
-            var authors = Mapper.Map<IEnumerable<AuthorDto>>(db.GetAuthors());
+            repo = new Repository(db);
+        }
+
+        public IHttpActionResult Get()
+        {
+        
+            var authors = Mapper.Map<IEnumerable<AuthorDto>>(repo.GetAuthorsList());
             return Ok(authors);
+        }
+
+
+        public IHttpActionResult Get(Guid id)
+        {
+            var author = Mapper.Map<AuthorDto>(repo.GetAuthor(id));
+
+            if(author == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(author);
         }
 
     }
