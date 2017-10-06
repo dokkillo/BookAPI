@@ -7,6 +7,8 @@ using System.Web.Http;
 using BookAPI.DAL.Entities;
 using BookAPI.Model;
 using System.Collections.Generic;
+using BookAPI.Helpers;
+using BookApi.Utils;
 
 namespace BookAPI.Test.API
 {
@@ -19,13 +21,12 @@ namespace BookAPI.Test.API
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<BookAPI.DAL.Entities.Author, BookAPI.Model.AuthorDto>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
+               .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
+               .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.GetCurrentAge()));
 
             });
 
         }
-
-
         /// <summary>
         /// Test para probar que el metodo Get devuelve toda la lista de escritores en formato AuthorDto
         /// </summary>
@@ -45,11 +46,14 @@ namespace BookAPI.Test.API
         [TestMethod]
         public void AuthorsControllerReturnGetAuthorValue()
         {
+            SystemTime.Now = () => new DateTime(2017, 1, 1);
             var controller = new AuthorsController();
             IHttpActionResult actionResult = controller.Get(new Guid("25320c5e-f58a-4b1f-b63a-8ee07a840bdf"));
             var contentResult = actionResult as OkNegotiatedContentResult<AuthorDto>;
             Assert.IsNotNull(actionResult);
             Assert.AreEqual("Stephen King", contentResult.Content.Name);
+            Assert.AreEqual(69, contentResult.Content.Age);
+
         }
 
         /// <summary>

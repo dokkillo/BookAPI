@@ -76,6 +76,10 @@
       <Project>{90913df3-d9c6-40ea-8c11-647c70d89131}</Project>
       <Name>BookAPI.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BookAPI.Utils\BookAPI.Utils.csproj">
+      <Project>{19b87419-786f-45fe-b7bc-7d1a55b973ce}</Project>
+      <Name>BookAPI.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BookAPI\BookAPI.csproj">
       <Project>{46caed6f-0139-4ff5-a7f0-3eec4b5e12c2}</Project>
       <Name>BookAPI</Name>
@@ -83,6 +87,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

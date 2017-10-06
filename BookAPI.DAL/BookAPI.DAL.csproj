@@ -47,5 +47,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookAPI.Utils\BookAPI.Utils.csproj">
+      <Project>{19b87419-786f-45fe-b7bc-7d1a55b973ce}</Project>
+      <Name>BookAPI.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

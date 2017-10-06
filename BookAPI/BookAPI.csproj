@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AuthorsController.cs" />
+    <Compile Include="Helpers\DateTimeOffsetExtensions.cs" />
     <Compile Include="Model\AuthorDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +84,10 @@
     <ProjectReference Include="..\BookAPI.DAL\BookAPI.DAL.csproj">
       <Project>{90913df3-d9c6-40ea-8c11-647c70d89131}</Project>
       <Name>BookAPI.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookAPI.Utils\BookAPI.Utils.csproj">
+      <Project>{19b87419-786f-45fe-b7bc-7d1a55b973ce}</Project>
+      <Name>BookAPI.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

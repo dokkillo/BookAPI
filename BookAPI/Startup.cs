@@ -6,6 +6,7 @@ using System.Web.Http;
 using Newtonsoft.Json.Serialization;
 using System.Net.Http.Formatting;
 using System.Linq;
+using BookAPI.Helpers;
 
 
 [assembly: OwinStartup(typeof(BookAPI.Startup))]
@@ -31,7 +32,8 @@ namespace BookAPI
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<BookAPI.DAL.Entities.Author, BookAPI.Model.AuthorDto>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
+                .ForMember(dest => dest.Age, opt => opt.MapFrom(src=> src.DateOfBirth.GetCurrentAge()));
 
             });
 
