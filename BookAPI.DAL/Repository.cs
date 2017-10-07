@@ -27,5 +27,15 @@ namespace BookAPI.DAL
         {
             return _db.GetAuthors();
         }
+
+        public Book GetBook(Guid AuthorId, Guid BookId)
+        {
+            var author = GetAuthor(AuthorId);
+            if(author != null)
+            {
+                return author.Books.Where(x => x.Id == BookId).FirstOrDefault();
+            }
+            return null;
+        }
     }
 }

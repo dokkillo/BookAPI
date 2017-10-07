@@ -31,7 +31,7 @@ namespace BookAPI.Test.API
         /// Test para probar que el metodo Get devuelve toda la lista de escritores en formato AuthorDto
         /// </summary>
         [TestMethod]
-        public void AuthorsControllersReturnValues()
+        public void Authors_Controller_Return_Values()
         {
             var controller = new AuthorsController();
             IHttpActionResult actionResult = controller.Get();
@@ -44,7 +44,7 @@ namespace BookAPI.Test.API
         /// Test que comprueba que el Metodo Get(Id) devuelve el escritor seleccionado en formato AuthorDTo y que el mapeo ha funcionado correctamente
         /// </summary>
         [TestMethod]
-        public void AuthorsControllerReturnGetAuthorValue()
+        public void Authors_Controller_Return_Get_Author_Value()
         {
             SystemTime.Now = () => new DateTime(2017, 1, 1);
             var controller = new AuthorsController();
@@ -60,7 +60,7 @@ namespace BookAPI.Test.API
         /// Test que comprueba que se devuelve el codigo 404 cuando no se encuentra un escritor
         /// </summary>
         [TestMethod]
-        public void AuthorsControllerReturnGetAuthorNoExist()
+        public void Authors_Controller_Return_Get_Author_dont_Exist()
         {
             var controller = new AuthorsController();
             IHttpActionResult actionResult = controller.Get(new Guid());

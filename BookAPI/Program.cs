@@ -16,7 +16,8 @@ namespace BookAPI
                 // Create HttpCient and make a request to api/values 
                 HttpClient client = new HttpClient();
 
-                var response = client.GetAsync(baseAddress + "api/authors").Result;
+          
+        var response = client.GetAsync(baseAddress + "api/authors/25320c5e-f58a-4b1f-b63a-8ee07a840bdf/books").Result;
 
                 Console.WriteLine(response);
                 Console.WriteLine(response.Content.ReadAsStringAsync().Result);

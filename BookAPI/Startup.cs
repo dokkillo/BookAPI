@@ -24,6 +24,12 @@ namespace BookAPI
                 defaults: new { id = RouteParameter.Optional }
              );
 
+            config.Routes.MapHttpRoute(
+                name: "BooksAPI",
+                routeTemplate: "api/authors/{authorId}/books/{bookId}",
+                defaults: new { controller = "Books", action = "Get", bookId = RouteParameter.Optional } 
+             );
+
             app.UseWebApi(config);
 
             var jsonFormater = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
@@ -34,6 +40,8 @@ namespace BookAPI
                 cfg.CreateMap<BookAPI.DAL.Entities.Author, BookAPI.Model.AuthorDto>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
                 .ForMember(dest => dest.Age, opt => opt.MapFrom(src=> src.DateOfBirth.GetCurrentAge()));
+
+                cfg.CreateMap<BookAPI.DAL.Entities.Book, BookAPI.Model.BookDto>();
 
             });
 
